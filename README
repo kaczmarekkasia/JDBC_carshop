@@ -1,0 +1,18 @@
+Konsolowa aplikacja do dodawania i usuwania samochodów w bazie danych.
+
+- id
+- nr rejestracyjny
+- przebieg
+- marka i model
+- rocznik
+- typ (enum KOMBI, SEDAN, HATCHBACK, CABRIO, SUV) (int / varchar)
+- nazwisko wlasciciela
+
+Metody:
+- dodaj samochód
+- usuń samochód po identyfikatorze
+- usun samochod po numerze rejestracyjnym (który powinien być unikalny)
+- listowanie rekordów
+- szukanie rekordów po rejestracji (Like)
+- szukanie rekordów po nazwisku właściciela
+- szukanie po marce/modelu
