@@ -107,7 +107,7 @@ public class CarDao {
 
     public Optional<Car> selectById (Long id) throws SQLException {
         try (Connection connection = mysqlConnection.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(CarQueries.DELETE_BY_ID_QUERY)) {
+            try (PreparedStatement statement = connection.prepareStatement(CarQueries.SELECT_BY_ID_QUERY)) {
                     statement.setLong(1, id);
                     ResultSet resultSet = statement.executeQuery();
                  if(resultSet.next()) {

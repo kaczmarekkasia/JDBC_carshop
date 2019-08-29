@@ -1,10 +1,7 @@
 
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,16 +40,12 @@ public class RepairOrderDao {
 
     public void insertRepairOrderByCarId(RepairOrder repairOrder) throws SQLException, IOException {
         try (Connection connection = mySqlConnection.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(RepairOrderQuieries.INSERT_QUERY)) {
+            try (PreparedStatement statement = connection.prepareStatement(RepairOrderQuieries.INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
                 CarDao carDao = new CarDao();
                 if (carDao.selectById(repairOrder.getCarId()).isPresent()) {
-                    statement.setLong(1, repairOrder.getId());
-                    statement.setObject(2, repairOrder.getAddDate());
-                    statement.setBoolean(3, repairOrder.isDone());
-                    statement.setObject(4, repairOrder.getEndDate());
-                    statement.setString(5, repairOrder.getOrderContent());
-                    statement.setLong(6, repairOrder.getCarId());
+                    statement.setString(1, repairOrder.getOrderContent());
+                    statement.setLong(2, repairOrder.getCarId());
 
                     boolean success = statement.execute();
                     ResultSet resultSet = statement.getGeneratedKeys();
@@ -71,7 +64,7 @@ public class RepairOrderDao {
 
     public void markOrderAsDone(Long orderId, Long carId) throws SQLException {
         try (Connection connection = mySqlConnection.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(RepairOrderQuieries.REPEIR_ORDER_IS_DONE_QUERY)) {
+            try (PreparedStatement statement = connection.prepareStatement(RepairOrderQuieries.REPAIR_ORDER_IS_DONE_QUERY)) {
                 statement.setLong(1, orderId);
                 statement.setLong(2, carId);
 

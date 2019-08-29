@@ -14,4 +14,9 @@ public class RepairOrder {
     private LocalDateTime endDate;
     private String orderContent;
     private Long carId;
+
+    public RepairOrder(String orderContent, Long carId) {
+        this.orderContent = orderContent;
+        this.carId = carId;
+    }
 }

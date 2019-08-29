@@ -16,7 +16,7 @@ public interface CarQueries {
             "values (?,?,?,?,?,?);";
 
     String DELETE_BY_ID_QUERY = "delete from `cars` where id = ?";
-    String SELECT_BY_ID_QUERY = "select from `cars` where id = ?";
+    String SELECT_BY_ID_QUERY = "select * from `cars` where id = ?";
     String DELETE_BY_REGNR_QUERY = "delete from `cars` where regNr = ?";
     String SELECT_ALL_QUERY = "select * from `cars`;";
     String SELECT_BY_REGNR_QUERY = "select * from `cars` where regNr like ?;";

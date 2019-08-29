@@ -40,7 +40,7 @@ public class Main {
                     "Mark repair query as done (j)\n" +
                     "List all undone repair orders (k)\n" +
                     "List all done repair orders (l)\n" +
-                    "List ale repair orders from the last X days (k)\n" +
+                    "List ale repair orders from the last X days (m)\n" +
                     "Quit (q)");
             command = scanner.nextLine();
 
@@ -108,6 +108,10 @@ public class Main {
                         RepairOrder repairOrder = loadContentFromUser.loadFullRepairOrderInfo();
                         repairOrderDao.insertRepairOrderByCarId(repairOrder);
                         break;
+                    case "j":
+
+                        break;
+
                 }
             } catch (IllegalArgumentException iae) {
                 System.err.println("Wrong command..try again!\n");

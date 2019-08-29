@@ -32,33 +32,16 @@ public class LoadContentFromUser {
 
     public RepairOrder loadFullRepairOrderInfo(){
         RepairOrder repairOrder;
-        System.out.println("Start date: yyyy-MM-dd HH:mm");
-        LocalDateTime startDate = insertDate();
-        System.out.println("Is it done?");
-        Boolean isDone = Boolean.parseBoolean(scanner.nextLine());
-        System.out.println("End date: yyyy-MM-dd HH:mm");
-        LocalDateTime endDate = insertDate();
         System.out.println("Order content:");
         String contentOreder = scanner.nextLine();
         System.out.println("Car id:");
         Long carId = Long.parseLong(scanner.nextLine());
 
-        repairOrder = new RepairOrder(null, startDate, isDone, endDate, contentOreder, carId);
+        repairOrder = new RepairOrder(contentOreder, carId);
 
         return repairOrder;
     }
 
-    private LocalDateTime insertDate() {
-        LocalDateTime localDateTime = null;
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        try {
-            localDateTime = LocalDateTime.parse(scanner.nextLine(), dateTimeFormatter);
-            System.out.println(localDateTime);
-        }catch (DateTimeParseException dtpe){
-            System.out.println("Wrong date format");
-        }
-        return localDateTime;
-    }
 
     public String loadSingleInfo(String info){
         System.out.println("Please put "+ info);
