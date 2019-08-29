@@ -1,3 +1,5 @@
+
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,7 +36,13 @@ public class CarDao {
                 statement.setString(5, String.valueOf(car.getCarType()));
                 statement.setString(6, car.getOwnerName());
 
-                statement.executeUpdate();
+                boolean success = statement.execute();
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if(resultSet.next()) {
+
+                    Long generatedId = resultSet.getLong(1);
+                    System.out.println("The car has been insert. Id:" + generatedId);
+                }
             }
         }
     }
@@ -97,6 +105,19 @@ public class CarDao {
         return setStringAndExecuteQuery(brand, CarQueries.SELECT_BY_BRAND);
     }
 
+    public Optional<Car> selectById (Long id) throws SQLException {
+        try (Connection connection = mysqlConnection.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(CarQueries.DELETE_BY_ID_QUERY)) {
+                    statement.setLong(1, id);
+                    ResultSet resultSet = statement.executeQuery();
+                 if(resultSet.next()) {
+                     return Optional.of(loadCarFromResultSet(resultSet));
+                 }
+            }
+        }
+        return Optional.empty();
+    }
+
     private List<Car> setStringAndExecuteQuery(String data, String query) throws SQLException {
         List<Car> cars = new ArrayList<>();
         try (Connection connection = mysqlConnection.getConnection()) {
@@ -105,11 +126,8 @@ public class CarDao {
                 statement.setString(1, "%"+data+"%");
                 ResultSet resultSet = statement.executeQuery();
 
-                while (resultSet.next()) {
-                    Car car = loadCarFromResultSet(resultSet);
-                    cars.add(car);
+                loadMultipleCarsFromResultSet(cars, resultSet);
 
-                }
             }
         }
         return cars;

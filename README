@@ -16,3 +16,22 @@ Metody:
 - szukanie rekordów po rejestracji (Like)
 - szukanie rekordów po nazwisku właściciela
 - szukanie po marce/modelu
+
+Dodaj tabelę relacyjną z kluczem obcym w tabeli Car:
+
+Klasa Zlecenie (nie nazywaj klasy Order słowo kluczowe order jest zarezerwowane wewnątrz mysql):
+- data dodania
+- czy zrealizowane (boolean)
+- data zrealizowania
+- treść zlecenia
+- id samochodu z którym mamy relację
+
+Możliwe czynności które można wykonać:
+- listuj wszystkie zlecenia samochodu po id
+- dodaj zlecenie (samochodowi o id)
+- oznacz zlecenie jako zrealizowane (ustawia czas realizacji jako moment wywołania)
+(do zrealizowania zlecenia potrzebujemy id samochodu i id zlecenia)
+- listuj zlecenia niezrealizowane
+- listuj zlecenia zrealizowane
+- listuj zlecenia z ostatnich N dni. Użytkownik podaje N (ilość dni)
+jako parametr, a aplikacja wczytuje zlecenia sprzed N dni.
