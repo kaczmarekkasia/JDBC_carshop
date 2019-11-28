@@ -27,11 +27,11 @@ Klasa Zlecenie (nie nazywaj klasy Order słowo kluczowe order jest zarezerwowane
 - id samochodu z którym mamy relację
 
 Możliwe czynności które można wykonać:
-- listuj wszystkie zlecenia samochodu po id
+- listuj wszystkie zlecenia samochodu po id /**ToDo*/
 - dodaj zlecenie (samochodowi o id)
 - oznacz zlecenie jako zrealizowane (ustawia czas realizacji jako moment wywołania)
-(do zrealizowania zlecenia potrzebujemy id samochodu i id zlecenia)
-- listuj zlecenia niezrealizowane
-- listuj zlecenia zrealizowane
-- listuj zlecenia z ostatnich N dni. Użytkownik podaje N (ilość dni)
-jako parametr, a aplikacja wczytuje zlecenia sprzed N dni.
+(do zrealizowania zlecenia potrzebujemy id samochodu i id zlecenia) /**ToDo*/
+- listuj zlecenia niezrealizowane /**ToDo*/
+- listuj zlecenia zrealizowane /**ToDo*/
+- listuj zlecenia z ostatnich N dni. Użytkownik podaje N (ilość dni) 
+jako parametr, a aplikacja wczytuje zlecenia sprzed N dni. /**ToDo*/
